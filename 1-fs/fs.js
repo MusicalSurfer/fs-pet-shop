@@ -27,6 +27,10 @@ const petStore = {
         fs.readFile('../pets.json', 'utf8', (error, data) => {
             if (error) throw error;
 
+            if (!Number.isInterger(process.argv[3]) || process.argv[3] < 0 || process.argv[3] >= pets.length) {
+                console.error("Usage: node fs.js read INDEX");
+                process.exit(1);
+            }
             let newData = JSON.parse(data);
             switch (process.argv[3]) {
                 case '0':
